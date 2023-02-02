@@ -15,9 +15,9 @@ from torch.optim.lr_scheduler import ReduceLROnPlateau
 from sklearn.metrics import roc_auc_score
 from sklearn.metrics import average_precision_score
 
-from .utils import initialize_logger
-from .utils import load_model_from_state_dict
-from .utils import PerformanceMetrics
+from utils import initialize_logger
+from utils import load_model_from_state_dict
+from utils import PerformanceMetrics
 
 logger = logging.getLogger("selene")
 

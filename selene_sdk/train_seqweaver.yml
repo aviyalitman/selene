@@ -1,0 +1,39 @@
+---
+ops: [train]
+random_seed: 1337
+output_dir: /r04/al6117/CureGN/selene_seqweaver_output
+create_subdirectory: True
+lr: 0.1
+
+model: {
+    path: /r04/al6117/CureGN/selene/models/seqweaver.py,
+    class: Seqweaver,
+    class_args: {
+        n_classes: 220,
+    }
+}
+sampler: !obj:selene_sdk.samplers.MultiSampler {
+    train_sampler: !obj:selene_sdk.samplers.dataloader.H5DataLoader {
+        filepath: /r04/al6117/CureGN/CLIP_data/training_data/train.h5,
+        sequence_key: train_sequences,
+        targets_key: train_targets,
+        shuffle: True
+    },
+    validate_sampler: !obj:selene_sdk.samplers.dataloader.H5DataLoader {
+        filepath: /r04/al6117/CureGN/CLIP_data/training_data/valid.h5,
+        sequence_key: valid_sequences,
+        targets_key: valid_targets,
+        shuffle: False
+    },
+    features: !obj:selene_sdk.utils.load_features_list {
+        input_path: /r04/al6117/CureGN/CLIP_data/data.hg19.colnames
+    }
+}
+train_model: !obj:selene_sdk.TrainModel {
+    batch_size: 64, # 6330125 training examples
+    report_stats_every_n_steps: 98909, # 98909 steps for a full epoch
+    max_steps: 1978180, # 20 epochs
+    use_cuda: False ,
+    data_parallel: False,
+    logging_verbosity: 2,
+}

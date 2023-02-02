@@ -12,7 +12,7 @@ import numpy as np
 
 from functools import wraps
 from .online_sampler import OnlineSampler
-from ..utils import get_indices_and_probabilities
+from utils.utils import get_indices_and_probabilities
 
 logger = logging.getLogger(__name__)
 

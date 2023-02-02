@@ -11,7 +11,7 @@ import random
 import numpy as np
 
 from .sampler import Sampler
-from ..targets import GenomicFeatures
+from targets.genomic_features import GenomicFeatures
 
 
 class OnlineSampler(Sampler, metaclass=ABCMeta):

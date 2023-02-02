@@ -139,7 +139,6 @@ def _get_sequence_from_coords(len_chrs,
         choices.
 
     """
-
     if not _check_coords(len_chrs,
         chrom,
         start,
